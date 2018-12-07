@@ -1,6 +1,5 @@
 package ml.hpsapp.bookkeeping;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -16,6 +15,10 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import ml.hpsapp.bookkeeping.navigation.NavDashboardFragment;
+import ml.hpsapp.bookkeeping.navigation.NavFlatFragment;
+import ml.hpsapp.bookkeeping.navigation.NavPersonalFragment;
+
 public class Home extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener{
 
     private DrawerLayout drawer;
@@ -30,10 +33,10 @@ public class Home extends AppCompatActivity  implements NavigationView.OnNavigat
         dispemail=findViewById(R.id.dispemail);
         dispname=findViewById(R.id.dispname);
 
-        Intent in=getIntent();
-       String email= in.getStringExtra("email").toString();
+//        Intent in=getIntent();
+//       String email= in.getStringExtra("email").toString();
 
-        dispemail.setText(email);
+//        dispemail.setText(email);
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);

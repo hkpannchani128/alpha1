@@ -1,4 +1,4 @@
-package ml.hpsapp.bookkeeping;
+package ml.hpsapp.bookkeeping.dashboardtab;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,18 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class NavFlatFragment extends Fragment {
+import ml.hpsapp.bookkeeping.R;
 
-    @Nullable
+public class TabTab3Dashboard extends Fragment {
     @Override
-
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.nav_fragment_flat, container, false);
 
+        return inflater.inflate(R.layout.tab_fragment_dashboard_tab3, container, false);
 
-
-        getActivity().setTitle(R.string.flat);
-
-        return inflater.inflate(R.layout.nav_fragment_flat, container, false);
     }
 }
