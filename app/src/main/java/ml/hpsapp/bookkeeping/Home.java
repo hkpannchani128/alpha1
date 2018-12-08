@@ -94,7 +94,8 @@ public class Home extends AppCompatActivity  implements NavigationView.OnNavigat
                         new NavPersonalFragment()).commit();
                 break;
             case R.id.shr:
-                Toast.makeText(this, R.string.share, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), test.class);
+                startActivity(intent);
                 break;
             case R.id.s_lgt:
                 SharedPreferences.Editor editor = getSharedPreferences("login", MODE_PRIVATE).edit();
@@ -113,51 +114,5 @@ public class Home extends AppCompatActivity  implements NavigationView.OnNavigat
 
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    public  void  SummaryData(String JSON_URL)
-    {
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, JSON_URL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject ob = new JSONObject(response);
-                            JSONArray jsonArray = ob.getJSONArray("user");
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                String jsonuser = jsonObject.getString("username");
-                                String jsonpass = jsonObject.getString("password");
-                                String jsonemail= jsonObject.getString("email");
-
-                                String jsonfirstname=jsonObject.getString("firstname");
-                                String jsonlastname=jsonObject.getString("lastname");
-                                String jsonid=jsonObject.getString("id");
-                                String jsonmobile=jsonObject.getString("mobile");
-
-
-                                if (user.equals(jsonuser) && pass.equals(jsonpass)) {
-
-                                } else {
-
-                                }
-
-                            }
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(Home.this, "Getting error Please Check Network Connection", Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        requestQueue.add(stringRequest);
-
     }
 }
