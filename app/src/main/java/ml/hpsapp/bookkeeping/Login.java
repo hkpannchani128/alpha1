@@ -3,6 +3,9 @@ package ml.hpsapp.bookkeeping;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.os.Handler;
+import android.preference.PreferenceActivity;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -73,22 +76,42 @@ public class Login extends AppCompatActivity {
                                         String jsonuser = jsonObject.getString("username");
                                         String jsonpass = jsonObject.getString("password");
                                         String jsonemail= jsonObject.getString("email");
+
+                                        String jsonfirstname=jsonObject.getString("firstname");
+                                        String jsonlastname=jsonObject.getString("lastname");
+                                        String jsonid=jsonObject.getString("id");
+                                        String jsonmobile=jsonObject.getString("mobile");
+
+
                                         if (user.equals(jsonuser) && pass.equals(jsonpass)) {
                                             SharedPreferences.Editor editor = getApplicationContext().getSharedPreferences("login", MODE_PRIVATE).edit();
                                             editor.putString("username", user);
+                                            editor.putString("email",jsonemail);
+                                            editor.putString("firstname",jsonfirstname);
+                                            editor.putString("lastname",jsonlastname);
+                                            editor.putString("mobile",jsonmobile);
+                                            editor.putString("id",jsonid);
+
+
 
                                             editor.apply();
+
                                             Intent in = new Intent(getApplicationContext(), Home.class);
-                                            in.putExtra("email",jsonemail);
                                             startActivity(in);
                                             finish();
+                                            break;
                                         } else {
 
-                                            AlertDialog.Builder alert = new AlertDialog.Builder(Login.this);
-                                            alert.setCancelable(true);
-                                            alert.setTitle("Error");
-                                            alert.setMessage("Invalid Credentials");
-                                            alert.show();
+
+                                            final Handler handler = new Handler();
+                                            handler.postDelayed(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    Alert();
+                                                }
+                                            }, 5000);
+
+
                                         }
 
                                     }
@@ -120,4 +143,13 @@ public class Login extends AppCompatActivity {
         }
         return FALSE;
     }
+    public void Alert()
+    {
+        AlertDialog.Builder alert = new AlertDialog.Builder(Login.this);
+        alert.setCancelable(true);
+        alert.setTitle("Error");
+        alert.setMessage("Invalid Credentials");
+        alert.show();
+    }
 }
+

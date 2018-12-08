@@ -41,7 +41,7 @@
             android:layout_width="167dp"
             android:layout_height="30dp"
             android:layout_marginEnd="36dp"
-            android:text="Total Flat Balance"
+            android:text="N/A"
             android:textColor="#fff"
             android:textSize="15dp" />
     </LinearLayout>
@@ -51,7 +51,7 @@
         android:layout_width="317dp"
         android:layout_height="30dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="228dp"
+        android:layout_marginTop="222dp"
         android:orientation="horizontal">
 
         <TextView
@@ -66,7 +66,7 @@
             android:id="@+id/total_personal_bal"
             android:layout_width="169dp"
             android:layout_height="30dp"
-            android:text="Total Personal Balance"
+            android:text="N/A"
             android:textColor="#fff"
             android:textSize="15dp" />
     </LinearLayout>
@@ -93,7 +93,7 @@
             android:layout_width="171dp"
             android:layout_height="30dp"
             android:layout_alignParentEnd="true"
-            android:text="Total_Balance_Ans"
+            android:text="N/A"
             android:textColor="#fff"
             android:textSize="15dp" />
     </LinearLayout>
