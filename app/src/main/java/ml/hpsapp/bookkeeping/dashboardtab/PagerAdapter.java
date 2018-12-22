@@ -17,11 +17,11 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
 
         switch (position) {
             case 0:
-                return new TabTab1Dashboard();
+                return new TabSummaryDashboard();
             case 1:
-                return new TabTab2Dashboard();
+                return new TabFlatDashboard();
             case 2:
-                return new TabTab3Dashboard();
+                return new TabPersonalDashboard();
             default:
                 return null;
         }
