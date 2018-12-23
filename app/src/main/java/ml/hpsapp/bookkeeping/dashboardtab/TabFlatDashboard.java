@@ -104,7 +104,15 @@ public class TabFlatDashboard extends Fragment {
                     TextView t3v = new TextView(getActivity().getApplicationContext());
                     t3v.setText(cost);
                     t3v.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT, 1f));
-                    t3v.setTextColor(Color.WHITE);
+                    if (record.equals("SETTLE")) {
+                        if (Float.parseFloat(cost) >= 0) {
+                            t3v.setTextColor(Color.GREEN);
+                        } else {
+                            t3v.setTextColor(Color.RED);
+                        }
+                    } else {
+                        t3v.setTextColor(Color.WHITE);
+                    }
                     t3v.setGravity(Gravity.LEFT);
                     tbrow.addView(t3v);
                     stk.addView(tbrow, new TableLayout.LayoutParams(TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));

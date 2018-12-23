@@ -2,6 +2,7 @@ package ml.hpsapp.bookkeeping.dashboardtab;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -66,7 +66,12 @@ public class TabSummaryDashboard extends Fragment {
         @Override
         protected void onPostExecute(String result) {
             total_bal.setText(result);
-            Toast.makeText(getActivity(), result, Toast.LENGTH_SHORT).show();
+            if (Float.parseFloat(result) >= 0) {
+                total_bal.setTextColor(Color.GREEN);
+            } else {
+                total_bal.setTextColor(Color.RED);
+            }
+//            Toast.makeText(getActivity(), result, Toast.LENGTH_SHORT).show();
         }
 
         @Override
@@ -91,6 +96,11 @@ public class TabSummaryDashboard extends Fragment {
 
                     if (record.equals("SETTLE")) {
                         flat_bal.setText(String.format("%.2f", Float.parseFloat(cost)));
+                        if (Float.parseFloat(cost) >= 0) {
+                            flat_bal.setTextColor(Color.GREEN);
+                        } else {
+                            flat_bal.setTextColor(Color.RED);
+                        }
                         break;
                     }
 
@@ -119,6 +129,11 @@ public class TabSummaryDashboard extends Fragment {
 
                     if (record.equals("sum")) {
                         personal_bal.setText(String.format("%.2f", Float.parseFloat(cost)));
+                        if (Float.parseFloat(cost) >= 0) {
+                            personal_bal.setTextColor(Color.GREEN);
+                        } else {
+                            personal_bal.setTextColor(Color.RED);
+                        }
                         break;
                     }
 

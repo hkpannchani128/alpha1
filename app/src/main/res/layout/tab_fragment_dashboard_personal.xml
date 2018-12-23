@@ -10,13 +10,19 @@
         android:id="@+id/RelativeLayout1"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="60dp"
+
         android:orientation="vertical">
 
         <TableLayout
+
             android:id="@+id/personal_data"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="60dp"
+            android:gravity="center_horizontal">
 
         </TableLayout>
     </RelativeLayout>

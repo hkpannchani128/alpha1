@@ -1,15 +1,18 @@
 package ml.hpsapp.bookkeeping.navigation;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -21,10 +24,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
+import ml.hpsapp.bookkeeping.Home;
 import ml.hpsapp.bookkeeping.R;
 import ml.hpsapp.bookkeeping.dashboardtab.PagerAdapter;
 
@@ -32,13 +32,24 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class NavDashboardFragment  extends Fragment {
 
+    SwipeRefreshLayout mSwipeRefreshLayout;
     @Nullable
     @Override
-
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         FetchFlatData();
-        FetchPersonalTotal();
+        FetchPersonalData();
         View view = inflater.inflate(R.layout.nav_fragment_dashboard, container, false);
+
+        mSwipeRefreshLayout = view.findViewById(R.id.swipeToRefresh);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Intent i = new Intent(getActivity(), Home.class);
+                startActivity(i);
+                getActivity().finish();
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
 
         TabLayout tabLayout = view.findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText(R.string.summary));
@@ -67,6 +78,7 @@ public class NavDashboardFragment  extends Fragment {
 
             }
         });
+
 
         getActivity().setTitle(R.string.dashboard);
         return view;
@@ -109,7 +121,7 @@ public class NavDashboardFragment  extends Fragment {
 
     }
 
-    public void FetchPersonalTotal() {
+    public void FetchPersonalData() {
         String JSON_URL = "https://script.google.com/macros/s/AKfycbz-wEuE3k8xwQTVEXxu_-YiwskBpRCiS82j5F7hv7ZwMgMXM_g/exec?id=1DaW0kQA2p4leMtmIIOrZqyXUl8Voh2O84yYX4E9YuY4&sheet=JAN";
         SharedPreferences prefs = getActivity().getSharedPreferences("login", MODE_PRIVATE);
         final String firstname = prefs.getString("firstname", "");

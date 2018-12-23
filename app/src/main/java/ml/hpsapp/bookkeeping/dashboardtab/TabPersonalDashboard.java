@@ -47,11 +47,12 @@ public class TabPersonalDashboard extends Fragment {
         tbrow0.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
         tbrow0.setGravity(Gravity.CENTER_HORIZONTAL);
 
+
         TextView tv0 = new TextView(getActivity());
         tv0.setText(R.string.date);
         tv0.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT, 1f));
         tv0.setTextColor(Color.WHITE);
-        tv0.setGravity(Gravity.CENTER);
+        tv0.setGravity(Gravity.CENTER_HORIZONTAL);
         tbrow0.addView(tv0);
 
         TextView tv1 = new TextView(getActivity());
@@ -109,7 +110,7 @@ public class TabPersonalDashboard extends Fragment {
                     t1v.setText("" + date);
                     t1v.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT, 1f));
                     t1v.setTextColor(Color.WHITE);
-                    t1v.setGravity(Gravity.CENTER);
+                    t1v.setGravity(Gravity.CENTER_HORIZONTAL);
                     tbrow.addView(t1v);
 
                     TextView t2v = new TextView(getActivity().getApplicationContext());
@@ -139,7 +140,12 @@ public class TabPersonalDashboard extends Fragment {
                     TextView t5v = new TextView(getActivity().getApplicationContext());
                     t5v.setText(String.format("%.2f", Float.parseFloat(firstnameid)));
                     t5v.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT, 1f));
-                    t5v.setTextColor(Color.WHITE);
+                    if (Float.parseFloat(firstnameid) >= 0) {
+                        t5v.setTextColor(Color.GREEN);
+                    } else {
+                        t5v.setTextColor(Color.RED);
+                    }
+
                     t5v.setGravity(Gravity.LEFT);
                     tbrow.addView(t5v);
 
