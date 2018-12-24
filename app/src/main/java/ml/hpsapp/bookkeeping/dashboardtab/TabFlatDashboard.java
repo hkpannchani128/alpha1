@@ -1,12 +1,14 @@
 package ml.hpsapp.bookkeeping.dashboardtab;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,17 +21,29 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import ml.hpsapp.bookkeeping.Home;
 import ml.hpsapp.bookkeeping.R;
 
 public class TabFlatDashboard extends Fragment {
     LayoutInflater lf;
     View view;
+    SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         lf = this.getActivity().getLayoutInflater();
         view = lf.inflate(R.layout.tab_fragment_dashboard_flat, container, false);
 
+        mSwipeRefreshLayout = view.findViewById(R.id.swipeToRefresh);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Intent i = new Intent(getActivity(), Home.class);
+                startActivity(i);
+                getActivity().finish();
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
 
         FetchFlatData();
         return view;

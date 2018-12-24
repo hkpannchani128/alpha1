@@ -1,29 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/scrollView1"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:layout_alignParentLeft="true"
-    android:background="#3d455b">
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swipeToRefresh"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-    <RelativeLayout
-        android:id="@+id/RelativeLayout1"
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/scrollView1"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="60dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:background="#3d455b">
 
-        android:orientation="vertical">
-
-        <TableLayout
-
-            android:id="@+id/personal_data"
+        <RelativeLayout
+            android:id="@+id/RelativeLayout1"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="60dp"
-            android:gravity="center_horizontal">
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="60dp"
 
-        </TableLayout>
-    </RelativeLayout>
-</ScrollView>
+            android:orientation="vertical">
+
+            <TableLayout
+
+                android:id="@+id/personal_data"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="60dp"
+                android:gravity="center_horizontal">
+
+            </TableLayout>
+        </RelativeLayout>
+    </ScrollView>
+</android.support.v4.widget.SwipeRefreshLayout>

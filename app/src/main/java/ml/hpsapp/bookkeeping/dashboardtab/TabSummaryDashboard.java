@@ -1,6 +1,7 @@
 package ml.hpsapp.bookkeeping.dashboardtab;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -8,6 +9,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,15 +20,29 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import ml.hpsapp.bookkeeping.Home;
 import ml.hpsapp.bookkeeping.R;
+import ml.hpsapp.bookkeeping.navigation.NavDashboardFragment;
 
 public class TabSummaryDashboard extends Fragment {
     TextView flat_bal, personal_bal, total_bal;
+    SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         LayoutInflater lf = this.getActivity().getLayoutInflater();
         View view = lf.inflate(R.layout.tab_fragment_dashboard_summary, container, false);
+
+        mSwipeRefreshLayout = view.findViewById(R.id.swipeToRefresh);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Intent i = new Intent(getActivity(), Home.class);
+                startActivity(i);
+                getActivity().finish();
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
 
         flat_bal = view.findViewById(R.id.total_flat_bal);
         personal_bal = view.findViewById(R.id.total_personal_bal);

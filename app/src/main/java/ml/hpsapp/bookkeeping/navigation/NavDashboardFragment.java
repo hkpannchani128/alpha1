@@ -32,7 +32,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class NavDashboardFragment  extends Fragment {
 
-    SwipeRefreshLayout mSwipeRefreshLayout;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -40,16 +40,6 @@ public class NavDashboardFragment  extends Fragment {
         FetchPersonalData();
         View view = inflater.inflate(R.layout.nav_fragment_dashboard, container, false);
 
-        mSwipeRefreshLayout = view.findViewById(R.id.swipeToRefresh);
-        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                Intent i = new Intent(getActivity(), Home.class);
-                startActivity(i);
-                getActivity().finish();
-                mSwipeRefreshLayout.setRefreshing(false);
-            }
-        });
 
         TabLayout tabLayout = view.findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText(R.string.summary));

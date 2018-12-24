@@ -27,4 +27,6 @@
     <string name="description">Description</string>
     <string name="total">Total</string>
     <string name="initials">Initials</string>
+    <string name="about">About</string>
+    <string name="update">Update</string>
 </resources>

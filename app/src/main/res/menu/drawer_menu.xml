@@ -15,11 +15,14 @@
             android:title="@string/personal" />
     </group>
 
-    <item android:title="@string/communicate">
+    <item android:title="@string/about">
         <menu>
             <item
                 android:id="@+id/shr"
                 android:title="@string/share" />
+            <item
+                android:id="@+id/updt"
+                android:title="@string/update" />
         </menu>
     </item>
 
