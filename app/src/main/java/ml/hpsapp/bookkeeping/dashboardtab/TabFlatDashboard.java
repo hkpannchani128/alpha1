@@ -119,6 +119,14 @@ public class TabFlatDashboard extends Fragment {
                     t3v.setText(cost);
                     t3v.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT, 1f));
                     if (record.equals("SETTLE")) {
+                        t3v.setText(String.format("%.2f", Float.parseFloat(cost)));
+                        if (Float.parseFloat(cost) >= 0) {
+                            t3v.setTextColor(Color.GREEN);
+                        } else {
+                            t3v.setTextColor(Color.RED);
+                        }
+                    } else if (record.equals("b/d")) {
+                        t3v.setText(String.format("%.2f", Float.parseFloat(cost)));
                         if (Float.parseFloat(cost) >= 0) {
                             t3v.setTextColor(Color.GREEN);
                         } else {
