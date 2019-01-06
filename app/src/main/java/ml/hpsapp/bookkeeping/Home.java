@@ -4,10 +4,8 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -41,7 +39,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
     private DrawerLayout drawer;
     TextView dispname, dispemail;
-    String URL = "", user = "", pass = "";
+    String user = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,15 +96,13 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                         new NavPersonalFragment()).commit();
                 break;
             case R.id.shr:
+                FetchUpdateData("share");
                 break;
             case R.id.updt:
-                FetchUpdateData();
+                FetchUpdateData("update");
                 break;
             case R.id.s_lgt:
                 SharedPreferences.Editor editor = getSharedPreferences("login", MODE_PRIVATE).edit();
-//                editor.remove("username");
-//                editor.remove("email");
-//                editor.remove("user");
                 editor.clear().commit();
                 editor.apply();
 
@@ -144,7 +140,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
 
     private void update(String response) {
-        int ver = 1;
+        int ver = 2;
         try {
             JSONObject ob = new JSONObject(response);
             JSONArray jsonArray = ob.getJSONArray("chk_update");
@@ -188,7 +184,26 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         }
     }
 
-    public void FetchUpdateData() {
+    private void share(String response) {
+        try {
+            JSONObject ob = new JSONObject(response);
+            JSONArray jsonArray = ob.getJSONArray("chk_update");
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                final String link = jsonObject.getString("link");
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, link);
+                sendIntent.setType("text/plain");
+                startActivity(sendIntent);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void FetchUpdateData(final String operation) {
         String check_url = "https://script.google.com/macros/s/AKfycbz-wEuE3k8xwQTVEXxu_-YiwskBpRCiS82j5F7hv7ZwMgMXM_g/exec?id=1V6vxpw3H-FRKHYGJuZVZiNCKLrYntQRyOIZKj9tCHOk&sheet=chk_update";
 
 
@@ -196,7 +211,11 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        update(response);
+                        if (operation.equals("update")) {
+                            update(response);
+                        } else {
+                            share(response);
+                        }
                     }
                 },
                 new Response.ErrorListener() {

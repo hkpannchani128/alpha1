@@ -116,7 +116,7 @@ public class TabPersonalDashboard extends Fragment {
 //                if (date.equals("sum")){
 //                    continue;
 //                }
-                if (!date.equals("")) {
+                if (!date.equals("") && !String.format("%.2f", Float.parseFloat(firstnameid)).equals("0.00")) {
                     TableRow tbrow = new TableRow(getActivity().getApplicationContext());
                     tbrow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
 

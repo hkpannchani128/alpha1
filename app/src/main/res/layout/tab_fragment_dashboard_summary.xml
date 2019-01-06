@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/back"
+        android:focusableInTouchMode="true"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
@@ -18,14 +19,16 @@
             android:layout_height="121dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="107dp"
-            android:layout_marginTop="57dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="119dp"
+            android:layout_marginTop="55dp"
+            android:layout_marginEnd="123dp"
             app:srcCompat="@drawable/sulogo" />
 
 
         <LinearLayout
             android:id="@+id/linearLayout"
-            android:layout_width="316dp"
+            android:layout_width="318dp"
             android:layout_height="30dp"
             android:layout_above="@+id/linearLayout3"
             android:layout_alignStart="@+id/linearLayout3"
@@ -34,9 +37,8 @@
 
             <TextView
                 android:id="@+id/flat_bal"
-                android:layout_width="146dp"
+                android:layout_width="145dp"
                 android:layout_height="30dp"
-                android:layout_alignParentTop="true"
                 android:text="Flat Balance"
                 android:textColor="#fff"
                 android:textSize="15dp" />
@@ -47,13 +49,14 @@
                 android:layout_height="30dp"
                 android:layout_marginEnd="36dp"
                 android:text="N/A"
+                android:textAlignment="center"
                 android:textColor="#fff"
                 android:textSize="15dp" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout3"
-            android:layout_width="317dp"
+            android:layout_width="318dp"
             android:layout_height="30dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="222dp"
@@ -61,7 +64,7 @@
 
             <TextView
                 android:id="@+id/personal_bal"
-                android:layout_width="147dp"
+                android:layout_width="145dp"
                 android:layout_height="30dp"
                 android:text="Personal Balance"
                 android:textColor="#fff"
@@ -69,19 +72,21 @@
 
             <TextView
                 android:id="@+id/total_personal_bal"
-                android:layout_width="169dp"
+                android:layout_width="167dp"
                 android:layout_height="30dp"
                 android:text="N/A"
+                android:textAlignment="center"
                 android:textColor="#fff"
                 android:textSize="15dp" />
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/lltb"
             android:layout_width="318dp"
             android:layout_height="30dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="255dp"
 
+            android:layout_marginTop="255dp"
             android:orientation="horizontal">
 
             <TextView
@@ -95,14 +100,157 @@
 
             <TextView
                 android:id="@+id/total_bal_ans"
-                android:layout_width="171dp"
+                android:layout_width="167dp"
                 android:layout_height="30dp"
                 android:layout_alignParentEnd="true"
                 android:text="N/A"
+                android:textAlignment="center"
                 android:textColor="#fff"
                 android:textSize="15dp" />
         </LinearLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginBottom="0dp"
+            android:background="#4d4d33">
+
+            <LinearLayout
+                android:id="@+id/llidh"
+                android:layout_width="318dp"
+                android:layout_height="30dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="236dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/inserdatahead"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Insert Data"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llinsdate"
+                android:layout_width="318dp"
+                android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="33dp"
+                android:layout_marginBottom="190dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/insdatelabel"
+                    android:layout_width="145dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:text="Date"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/insdate"
+                    android:layout_width="145dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:focusableInTouchMode="true"
+                    android:hint="1-31"
+                    android:inputType="number"
+                    android:selectAllOnFocus="true"
+                    android:singleLine="true"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llinssub"
+                android:layout_width="318dp"
+                android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="150dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/sublabel"
+                    android:layout_width="145dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:text="Subject"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/inssub"
+                    android:layout_width="145dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="roti,veg..."
+                    android:inputType="textPersonName"
+                    android:singleLine="true"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llinsamt"
+                android:layout_width="318dp"
+                android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="113dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/insamtlabel"
+                    android:layout_width="145dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:text="Amount"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/insamt"
+                    android:layout_width="145dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="eg. 300"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llinssubmit"
+                android:layout_width="318dp"
+                android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="69dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/inssubmit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Submit"
+                    android:textAlignment="center" />
+            </LinearLayout>
+        </RelativeLayout>
 
     </RelativeLayout>
 </android.support.v4.widget.SwipeRefreshLayout>
