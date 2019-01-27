@@ -21,10 +21,17 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import ml.hpsapp.bookkeeping.Home;
 import ml.hpsapp.bookkeeping.R;
+import ml.hpsapp.bookkeeping.SplashActivity;
 
 public class TabPersonalDashboard extends Fragment {
+    Calendar cal= Calendar.getInstance();
+    SimpleDateFormat month_date = new SimpleDateFormat("MMM");
+    String current_month = month_date.format(cal.getTime());
     LayoutInflater lf;
     View view;
     SwipeRefreshLayout mSwipeRefreshLayout;
@@ -38,7 +45,7 @@ public class TabPersonalDashboard extends Fragment {
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                Intent i = new Intent(getActivity(), Home.class);
+                Intent i = new Intent(getActivity(), SplashActivity.class);
                 startActivity(i);
                 getActivity().finish();
                 mSwipeRefreshLayout.setRefreshing(false);
@@ -105,7 +112,7 @@ public class TabPersonalDashboard extends Fragment {
 
         try {
             JSONObject ob = new JSONObject(personaldata);
-            JSONArray jsonArray = ob.getJSONArray("JAN");
+            JSONArray jsonArray = ob.getJSONArray(current_month);
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 String date = jsonObject.getString("date");

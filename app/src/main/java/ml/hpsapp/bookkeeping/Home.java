@@ -44,7 +44,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        FetchUpdateData("update");
 
         setContentView(R.layout.activity_home);
 
@@ -140,7 +140,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
 
     private void update(String response) {
-        int ver = 2;
+        int ver = 3;
         try {
             JSONObject ob = new JSONObject(response);
             JSONArray jsonArray = ob.getJSONArray("chk_update");
@@ -174,7 +174,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
 
                 } else {
-                    Toast.makeText(this, "You are using the latest version", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(this, "You are using the latest version", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -205,8 +205,6 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
     public void FetchUpdateData(final String operation) {
         String check_url = "https://script.google.com/macros/s/AKfycbz-wEuE3k8xwQTVEXxu_-YiwskBpRCiS82j5F7hv7ZwMgMXM_g/exec?id=1V6vxpw3H-FRKHYGJuZVZiNCKLrYntQRyOIZKj9tCHOk&sheet=chk_update";
-
-
         StringRequest stringRequest = new StringRequest(Request.Method.GET, check_url,
                 new Response.Listener<String>() {
                     @Override

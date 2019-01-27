@@ -33,13 +33,19 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import ml.hpsapp.bookkeeping.Home;
 import ml.hpsapp.bookkeeping.R;
+import ml.hpsapp.bookkeeping.SplashActivity;
 
 import static android.content.Context.MODE_PRIVATE;
 
 public class TabSummaryDashboard extends Fragment {
+    Calendar cal= Calendar.getInstance();
+    SimpleDateFormat month_date = new SimpleDateFormat("MMM");
+    String current_month = month_date.format(cal.getTime());
     TextView flat_bal, personal_bal, total_bal, insdate, inssub, insamt;
     Button inssubmit;
     SwipeRefreshLayout mSwipeRefreshLayout;
@@ -53,7 +59,7 @@ public class TabSummaryDashboard extends Fragment {
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                Intent i = new Intent(getActivity(), Home.class);
+                Intent i = new Intent(getActivity(), SplashActivity.class);
                 startActivity(i);
                 getActivity().finish();
                 mSwipeRefreshLayout.setRefreshing(false);
@@ -72,6 +78,7 @@ public class TabSummaryDashboard extends Fragment {
         inssubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                inssubmit.setEnabled(false);
                 SharedPreferences prefs = getActivity().getSharedPreferences("login", Activity.MODE_PRIVATE);
                 final String firstname = prefs.getString("firstname", "");
                 String date = insdate.getText().toString();
@@ -122,7 +129,7 @@ public class TabSummaryDashboard extends Fragment {
             Float flat, personal;
             while (flat_bal.getText().toString().equals("N/A") && personal_bal.getText().toString().equals("N/A")) {
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(0);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -164,7 +171,7 @@ public class TabSummaryDashboard extends Fragment {
             final String id = prefs.getString("id", "");
             try {
                 JSONObject ob = new JSONObject(flatdata);
-                JSONArray jsonArray = ob.getJSONArray("JAN");
+                JSONArray jsonArray = ob.getJSONArray(current_month);
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                     String record = jsonObject.getString("Record");
@@ -197,7 +204,7 @@ public class TabSummaryDashboard extends Fragment {
 
             try {
                 JSONObject ob = new JSONObject(personaldata);
-                JSONArray jsonArray = ob.getJSONArray("JAN");
+                JSONArray jsonArray = ob.getJSONArray(current_month);
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                     String record = jsonObject.getString("date");
@@ -287,6 +294,7 @@ public class TabSummaryDashboard extends Fragment {
                         insdate.setText("");
                         inssub.setText("");
                         insamt.setText("");
+                        inssubmit.setEnabled(true);
                     } else {
                         new AlertDialog.Builder(getContext())
                                 .setTitle("Failed!!!")
